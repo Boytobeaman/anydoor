@@ -1,10 +1,13 @@
 const http = require('http');
 const chalk = require('chalk');
-const conf = require('./src/config/defaultConfig');
+const path = require('path');
+
+const theroute = require('./helper/route');
+
+const conf = require('./config/defaultConfig');
 const server = http.createServer((req, res)=>{
-    res.statusCode = 200;
-    res.setHeader('Content-Type','text/plain');
-    res.end('Hello world!');
+    const filePath = path.join(conf.root, req.url);
+    theroute(req, res, filePath);
 });
 
 server.listen(conf.port, conf.hostname, () => {
