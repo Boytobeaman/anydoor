@@ -4,3 +4,8 @@ npm-debug.log*
 node_modules/
 build/
 .idea
+
+**/screenshot/*.png
+**/mn/*.png
+**/mn/*.jpg
+**/mn/*.gif
