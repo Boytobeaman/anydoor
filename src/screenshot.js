@@ -10,7 +10,7 @@ const srcToImg = require('./helper/srcToImg');
         console.log('go to: https://image.baidu.com');
         await page.setViewport({
             width: 1920,
-            height: 1300
+            height: 2300
         });
         console.log(`reset viewport`);
         await page.focus('#kw');
@@ -23,7 +23,12 @@ const srcToImg = require('./helper/srcToImg');
                 const images = document.querySelectorAll('img.main_img');
                 return Array.prototype.map.call(images, img=>img.src);
             });
+            let aa = 1;
             srcs.forEach(async src => {
+                console.log(`srctoimg...(${src}) ${aa}`)
+                aa += 1;
+                //sleep
+                await page.waitFor(200);
                 await srcToImg(src, mn);
             });
             await browser.close();
