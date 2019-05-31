@@ -13,4 +13,4 @@ new CronJob('00 00 */9 * * *', function () {
     seoUrlArr.forEach(seoUrl=>{
       openSeoPage(seoPlatformUrl, seoUrl, inputID, startBtn)
     })
-}, null, true, 'America/Los_Angeles');
+}, null, true, 'Asia/Shanghai');
