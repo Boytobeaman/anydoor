@@ -10,11 +10,12 @@ module.exports = async (seoPlatformUrl, seoUrl, inputID, startBtn) =>{
     await page.goto(seoPlatformUrl);
     console.log(`go to: ${seoPlatformUrl} for (${seoUrl})`);
     await page.setViewport({
-        width: 1920,
+        width: 1200,
         height: 1300
     });
     console.log(`reset viewport`);
     await page.waitFor(1200);
+    await page.waitForSelector(`#${inputID}`);
     await page.focus(`#${inputID}`);
     // select input text to remove them
     await page.keyboard.down('Control');
@@ -25,7 +26,7 @@ module.exports = async (seoPlatformUrl, seoUrl, inputID, startBtn) =>{
     await page.keyboard.sendCharacter(seoUrl);
     await page.click(`#${startBtn}`);
     console.log(`started for url ${seoUrl}`);
-    
+
     page.on('load', async () =>{
       setTimeout(()=>{
         browser.close();
