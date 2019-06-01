@@ -1,7 +1,7 @@
 
 const puppeteer = require('puppeteer');
 
-module.exports = async (seoPlatformUrl, seoUrl, inputID, startBtn) =>{
+module.exports = async (seoPlatformUrl, seoUrl, input, startBtn) =>{
   try {
     // const browser = await puppeteer.launch({headless: false});
     const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
@@ -15,8 +15,8 @@ module.exports = async (seoPlatformUrl, seoUrl, inputID, startBtn) =>{
     });
     console.log(`reset viewport`);
     await page.waitFor(1200);
-    await page.waitForSelector(`#${inputID}`);
-    await page.focus(`#${inputID}`);
+    await page.waitForSelector(`${input}`);
+    await page.focus(`${input}`);
     // select input text to remove them
     await page.keyboard.down('Control');
     await page.keyboard.down('A');
@@ -24,7 +24,7 @@ module.exports = async (seoPlatformUrl, seoUrl, inputID, startBtn) =>{
     await page.keyboard.up('Control');
 
     await page.keyboard.sendCharacter(seoUrl);
-    await page.click(`#${startBtn}`);
+    await page.click(`${startBtn}`);
     console.log(`started for url ${seoUrl}`);
 
     setTimeout(()=>{
