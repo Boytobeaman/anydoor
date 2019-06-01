@@ -4,7 +4,8 @@ const puppeteer = require('puppeteer');
 module.exports = async (seoPlatformUrl, seoUrl, inputID, startBtn) =>{
   try {
     // const browser = await puppeteer.launch({headless: false});
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+    // const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto(seoPlatformUrl);
     console.log(`go to: ${seoPlatformUrl}`);
