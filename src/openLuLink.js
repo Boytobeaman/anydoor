@@ -11,8 +11,8 @@ let startBtn = 'input[type="submit"]'
 // let input = '.product-header-search'
 // let startBtn = 'button[type="submit"]'
 
-// new CronJob('00 00 */9 * * *', function () {
-new CronJob('00 */1 * * * *', function () {
+new CronJob('00 00 */9 * * *', function () {
+// new CronJob('00 */1 * * * *', function () {
     console.log('---cron triggered---');
     console.log(new Date());
     seoUrlArr.forEach(seoUrl=>{
