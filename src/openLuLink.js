@@ -3,7 +3,7 @@ const openSeoPage = require('./helper/openPageSearch')
 
 let seoPlatformUrl = 'https://tool.lusongsong.com/seo/'
 let seoUrlArr = ['www.movingboxsale.com','www.ausplastic.com']
-let inputID = '#dn'
+let input = '#dn'
 let startBtn = '#linkbtn'
 
 // let seoPlatformUrl = 'https://www.ausplastic.com'
