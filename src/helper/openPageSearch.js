@@ -10,7 +10,7 @@ module.exports = async (seoPlatformUrl, seoUrl, input, startBtn) =>{
     await page.goto(seoPlatformUrl);
     console.log(`go to: ${seoPlatformUrl} for (${seoUrl})`);
     await page.setViewport({
-        width: 1200,
+        width: 1300,
         height: 1300
     });
     console.log(`reset viewport`);
