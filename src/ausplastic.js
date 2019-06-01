@@ -1,4 +1,5 @@
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-cn');
 const {mn} = require('./config/ssConfig');
 const srcToImg = require('./helper/srcToImg');
 
