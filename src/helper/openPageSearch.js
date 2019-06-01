@@ -28,7 +28,7 @@ module.exports = async (seoPlatformUrl, seoUrl, inputID, startBtn) =>{
       await page.click(`#${startBtn}`);
       console.log(`started for url ${seoUrl}`);
       setTimeout(()=>{
-        await browser.close();
+        browser.close();
       },1*60*60*1000)
       
     });
