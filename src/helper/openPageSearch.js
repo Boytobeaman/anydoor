@@ -1,5 +1,6 @@
 
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-cn');
 
 module.exports = async (seoPlatformUrl, seoUrl, input, startBtn) =>{
   try {
