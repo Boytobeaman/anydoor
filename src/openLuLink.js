@@ -1,4 +1,5 @@
 var CronJob = require('cron').CronJob;
+var moment = require('moment');
 const openSeoPage = require('./helper/openPageSearch')
 
 let seoPlatformUrl = 'https://tool.lusongsong.com/seo/'
@@ -14,7 +15,7 @@ let startBtn = 'input[type="submit"]'
 new CronJob('00 00 */9 * * *', function () {
 // new CronJob('00 */1 * * * *', function () {
     console.log('---cron triggered---');
-    console.log(new Date());
+    console.log(moment().format());
     seoUrlArr.forEach(seoUrl=>{
       openSeoPage(seoPlatformUrl, seoUrl, input, startBtn)
     })
