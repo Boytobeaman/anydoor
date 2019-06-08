@@ -1,3 +1,6 @@
+var CronJob = require('cron').CronJob;
+var moment = require('moment');
+
 var request = require('request');
 var rp = require('request-promise');
 var fs = require('fs');
