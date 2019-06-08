@@ -54,7 +54,7 @@ if(typeof limit != 'undefined'){
           let allSeoUrl = res;
           allSeoUrl.forEach(seoUrl=>{
             seoDomainArr.forEach(seoDomain=>{
-              let seoPlatformUrl = seoUrl.replace(domain_template,seoDomain)
+              let seoPlatformUrl = seoUrl.url.replace(domain_template,seoDomain)
               openPingPage(seoPlatformUrl, seoDomain)
             })
           })
