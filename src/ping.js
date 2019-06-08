@@ -1,5 +1,6 @@
 var CronJob = require('cron').CronJob;
 var moment = require('moment');
+var async = require('async');
 
 var request = require('request');
 var rp = require('request-promise');
@@ -52,13 +53,22 @@ if(typeof limit != 'undefined'){
           console.log(res)
           domain_template
           let allSeoUrl = res;
+          let allPingUrlArr = [];
           allSeoUrl.forEach(seoUrl=>{
             seoDomainArr.forEach(seoDomain=>{
               let seoPlatformUrl = seoUrl.url.replace(domain_template,seoDomain)
-              openPingPage(seoPlatformUrl, seoDomain)
+              allPingUrlArr.push(seoPlatformUrl)
             })
           })
-          
+          async.mapLimit(allPingUrlArr, 3, function (pingUrl, callback) {
+            openPingPage(pingUrl, callback);
+          }, function (err, result) {
+            if(err){
+              console.log(err)
+            }else{
+              console.log('all ping finished')
+            }
+          })     
         })
         .catch(function(err){
           console.log(err)
