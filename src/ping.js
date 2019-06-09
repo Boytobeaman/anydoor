@@ -8,11 +8,11 @@ var fs = require('fs');
 var _ = require('lodash');
 const openPingPage = require('./helper/pingPage')
 
-let seoDomainArr = ['movingboxsale.com','ausplastic.com']
 let domain_template = '__ping_domain__'
 // let ping_api_domin = 'http://localhost:1337'
 let ping_api_domin = 'http://seo.50d.top'
 let ping_api_url = '/pingurls'
+let domain_api_url = '/pingdomains'
 let auth_url ='/auth/local'
 let limit = -1
 var auth_options = {
@@ -41,22 +41,30 @@ new CronJob('00 00 */7 * * *', function () {
           return response.jwt
       })
       .then(function(jwt){
-        return rp({
-          method: 'GET',
-          uri: `${ping_api_domin}${ping_api_url}${filter}`,
-          headers: {
-              Authorization: `Bearer ${jwt}`
-          },
-          json: true
-        })
-        .then(function(res){
-          console.log(res)
-          domain_template
-          let allSeoUrl = res;
+        Promise.all([
+          rp({
+            method: 'GET',
+            uri: `${ping_api_domin}${ping_api_url}${filter}`,
+            headers: {
+                Authorization: `Bearer ${jwt}`
+            },
+            json: true
+          }), 
+          rp({
+            method: 'GET',
+            uri: `${ping_api_domin}${domain_api_url}${filter}`,
+            headers: {
+                Authorization: `Bearer ${jwt}`
+            },
+            json: true
+        })]).then(datas =>{
+          // 接收到的 datas 是一个数组，依次包含了多个 promise 返回的内容
+          let allSeoUrl = datas[0];
+          let seoDomainArr = datas[1]
           let allPingUrlArr = [];
           allSeoUrl.forEach(seoUrl=>{
             seoDomainArr.forEach(seoDomain=>{
-              let seoPlatformUrl = seoUrl.url.replace(domain_template,seoDomain)
+              let seoPlatformUrl = seoUrl.url.replace(domain_template,seoDomain.domain)
               allPingUrlArr.push(seoPlatformUrl)
             })
           })
@@ -67,8 +75,10 @@ new CronJob('00 00 */7 * * *', function () {
               console.log(err)
             }else{
               console.log('all ping finished')
+              console.log(moment().format())
             }
-          })     
+          }) 
+
         })
         .catch(function(err){
           console.log(err)
