@@ -31,8 +31,8 @@ if(typeof limit != 'undefined'){
 }
 
 
-// new CronJob('00 00 */7 * * *', function () {
-  new CronJob('00 */1 * * * *', function () {
+new CronJob('00 00 */7 * * *', function () {
+  // new CronJob('00 */1 * * * *', function () {
   console.log('---cron triggered---');
   console.log(moment().format());
     rp(auth_options)
