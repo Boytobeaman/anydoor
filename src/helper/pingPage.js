@@ -9,7 +9,7 @@ module.exports = async (seoPlatformUrl, callback) =>{
   try {
     const page = await browser.newPage();
     await page.goto(seoPlatformUrl);
-    console.log(`go to: ${seoPlatformUrl}`);
+    console.log(`go to: ${seoPlatformUrl} (${count} of ${whole_count})`);
     await page.setViewport({
         width: 1300,
         height: 1300
@@ -17,10 +17,12 @@ module.exports = async (seoPlatformUrl, callback) =>{
     await page.waitFor(1200);
     browser.close();
     callback(null,"")
+    count+=1;
 
   } catch (error) {
       console.log(error);
       browser.close();
       callback(null,"")
+      count+=1;
   }
 };

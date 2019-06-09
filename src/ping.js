@@ -31,8 +31,8 @@ if(typeof limit != 'undefined'){
 }
 
 
-new CronJob('00 00 */7 * * *', function () {
-  // new CronJob('00 */1 * * * *', function () {
+// new CronJob('00 00 */7 * * *', function () {
+  new CronJob('00 */1 * * * *', function () {
   console.log('---cron triggered---');
   console.log(moment().format());
     rp(auth_options)
@@ -68,7 +68,9 @@ new CronJob('00 00 */7 * * *', function () {
               allPingUrlArr.push(seoPlatformUrl)
             })
           })
-          async.mapLimit(allPingUrlArr, 3, function (pingUrl, callback) {
+          global.count = 0;
+          global.whole_count = allPingUrlArr.length;
+          async.mapLimit(allPingUrlArr, 5, function (pingUrl, callback) {
             openPingPage(pingUrl, callback);
           }, function (err, result) {
             if(err){
