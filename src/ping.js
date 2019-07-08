@@ -30,7 +30,7 @@ if(typeof limit != 'undefined'){
   filter = `?_limit=${limit}`
 }
 
-
+console.log(`filename ${__filename} executed`);
 new CronJob('00 00 */7 * * *', function () {
   // new CronJob('00 */1 * * * *', function () {
   console.log('---cron triggered---');
