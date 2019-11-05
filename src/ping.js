@@ -61,6 +61,8 @@ new CronJob('00 00 */7 * * *', function () {
           // 接收到的 datas 是一个数组，依次包含了多个 promise 返回的内容
           let allSeoUrl = datas[0];
           let seoDomainArr = datas[1]
+          seoDomainArr = seoDomainArr.filter(item=>item.to_ping)
+          console.log(`to_ping domains:`,seoDomainArr)
           let allPingUrlArr = [];
           allSeoUrl.forEach(seoUrl=>{
             seoDomainArr.forEach(seoDomain=>{
